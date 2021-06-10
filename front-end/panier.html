@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon panier</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/front-end/css/style.css">
+  </head>
+  <body>
+    <header>
+        <a href="index.html"
+          ><img src="/front-end/images/logo.png" alt="logo" class="logo"
+        /></a>
+        <nav>
+          <ul>
+            <li><a href="index.html">Produits</a></li>
+            <li><a href="panier.html" class="cart-button">Mon panier</a></li>
+          </ul>
+        </nav>
+      </header>
+      <section class="panier">
+        <article id="customer-infos">
+            <h1>Mes informations</h1>
+            <form method="POST" class="infos">
+                <div class="info-wrapper">
+                <input type="text" name="name" id="name" placeholder="Nom">
+                <input type="text" name="firstname" id="firstname" placeholder="Prénom">
+                </div>
+                <input type="email" name="email" id="email" placeholder="E-mail">
+                <input type="text" name="address" id="address" placeholder="Adresse">
+                <div class="info-wrapper">
+                <input type="text" name="cp" id="cp" placeholder="Code Postal">
+                <input type="text" name="city" id="city" placeholder="Ville">
+                </div>
+                <input type="submit" value="Commander" id="btn-command" onclick="location.href='congratulations.html'";>
+                
+            </form>
+        </article>
+        <article id="detailpanier">
+          <div id="cart-content">
+          </div>
+          <div id="totalcart"></div>
+        </div>
+      </main>
+      <script src="/front-end/javascript/panier.js"></script>    
+  </body>
+</html>
