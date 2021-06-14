@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Orinoco</title>
+        <title>Félicitations !</title>
         <link rel="stylesheet" href="/front-end/css/style.css" />
     </head>
     <body>
@@ -13,23 +13,16 @@
             <nav>
                 <ul>
                     <li><a href="index.html">Produits</a></li>
-                    <li>
-                        <a href="panier.html" class="cart-button">Mon panier</a>
-                    </li>
+                    <li><a href="panier.html" class="cart-button">Mon panier</a></li>
                 </ul>
             </nav>
         </header>
-        <main>
-            <section class="teddies">
-                <h1>
-                    Ours en peluche faits à la main
-                    <div class="line"></div>
-                </h1>
-                <div id="products"></div>
-            </section>
+        <main class="resume">
+            <h1>Félicitations <span id="congratsName"></span> ! Votre commande a été passée avec succès !</h1>
+            <h2>Votre commande numéro <span id="orderid"></span> est validée pour un montant total de <span id="totalamount"></span> !</h2>
+            <img src="/front-end/images/resume.jpg" alt="cadeau" />
         </main>
         <footer><p>© Orinoco, 2021</p></footer>
-
-        <script src="/front-end/javascript/index.js"></script>
+        <script src="/front-end/javascript/resume.js"></script>
     </body>
 </html>

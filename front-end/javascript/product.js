@@ -48,9 +48,6 @@ function getProduct() {
                     id,
                 };
 
-                // Pourquoi ça ne fonctionne pas ?
-                // let test = JSON.parse(localStorage.getItem("Teddies")) || [];
-
                 if (localStorage.getItem("Teddies") === null) {
                     let teddies = [];
                     teddy.quantity = 1;
