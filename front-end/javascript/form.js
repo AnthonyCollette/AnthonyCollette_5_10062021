@@ -28,14 +28,12 @@ function checkAddress(element) {
     }
 }
 
-formBtn.addEventListener("click", (event) => {
-    event.preventDefault();
+function sendCommand() {
     let lastName = document.getElementById("name");
     let firstName = document.getElementById("firstname");
     let email = document.getElementById("email");
     let address = document.getElementById("address");
     let city = document.getElementById("city");
-
     if (checkForm(lastName) && checkForm(firstName) && checkEmail(email) && checkAddress(address) && checkForm(city)) {
         let contact = { lastName: lastName.value, firstName: firstName.value, email: email.value, address: address.value, cp: cp.value, city: city.value };
         let arrayOfPaidProducts = [];
@@ -66,4 +64,9 @@ formBtn.addEventListener("click", (event) => {
     } else {
         alert("Vérifiez vos informations !");
     }
+}
+
+formBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    sendCommand();
 });
