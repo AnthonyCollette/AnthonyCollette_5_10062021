@@ -49,51 +49,112 @@ var teddiesArray = JSON.parse(localStorage.getItem("Teddies"));
 for (let i = 0; i < teddiesArray.length; i++) {
     plus[i].addEventListener("click", (event) => {
         event.preventDefault();
+
+        // Récupère le array dans le local storage
+
         let teddies = [];
         teddies = JSON.parse(localStorage.getItem("Teddies"));
-        teddies[i].quantity++;
-        totalPriceProduct = (teddies[i].price / 100) * teddies[i].quantity;
-        total += teddies[i].price / 100;
-        localStorage.setItem("Teddies", JSON.stringify(teddies));
-        document.getElementsByClassName("quantityofproduct")[i].innerHTML = teddies[i].quantity;
-        document.getElementsByClassName("totalpriceproduct")[i].innerHTML = totalPriceProduct + `€`;
+
+        // Modifie la quantité
+
+        let teddyName = event.target.parentElement.parentElement.getElementsByTagName("h3");
+        let teddyColor = event.target.parentElement.parentElement.getElementsByTagName("h5");
+        let teddyQuantity = event.target.parentElement.parentElement.getElementsByClassName("quantityofproduct");
+        let actualTeddy = teddies.filter((teddy) => teddy.name == teddyName[0].innerHTML && teddy.color == teddyColor[0].innerHTML);
+        actualTeddy[0].quantity++;
+        for (let i = 0; i < teddyQuantity.length; i++) {
+            teddyQuantity[i].innerHTML = actualTeddy[0].quantity;
+        }
+
+        // Modifie le prix de l'ourson
+
+        let priceProductUI = event.target.parentElement.parentElement.parentElement.getElementsByClassName("totalpriceproduct");
+        totalPriceProduct = (actualTeddy[0].price / 100) * actualTeddy[0].quantity;
+        for (let i = 0; i < priceProductUI.length; i++) {
+            priceProductUI[i].innerHTML = totalPriceProduct + `€`;
+        }
+
+        // Modifie le prix total de la commande
+
+        total += actualTeddy[0].price / 100;
         document.getElementById("totaldelacommande").innerHTML = "Total de la commande : " + total + "€";
         localStorage.setItem("Montant Total", total);
+
+        // Renvoie le array dans le local storage
+
+        localStorage.setItem("Teddies", JSON.stringify(teddies));
     });
 
     minus[i].addEventListener("click", (event) => {
         event.preventDefault();
+
+        // Récupère le array dans le local storage
+
         let teddies = [];
         teddies = JSON.parse(localStorage.getItem("Teddies"));
-        teddy = teddies[i];
-        if (teddy.quantity > 1) {
-            teddies[i].quantity--;
-            totalPriceProduct = (teddies[i].price / 100) * teddies[i].quantity;
-            localStorage.setItem("Teddies", JSON.stringify(teddies));
-            total -= teddies[i].price / 100;
-            document.getElementsByClassName("quantityofproduct")[i].innerHTML = teddies[i].quantity;
-            document.getElementsByClassName("totalpriceproduct")[i].innerHTML = totalPriceProduct + `€`;
-            document.getElementById("totaldelacommande").innerHTML = "Total de la commande : " + total + "€";
-            localStorage.setItem("Montant Total", total);
-        } else {
-            document.getElementsByClassName("productincart")[i].remove();
-            teddies.splice(i, 1);
-            localStorage.setItem("Teddies", JSON.stringify(teddies));
-            document.getElementById("totaldelacommande").innerHTML = "Total de la commande : " + total + "€";
-            localStorage.setItem("Montant Total", total);
+
+        // Modifie la quantité
+
+        let teddyName = event.target.parentElement.parentElement.getElementsByTagName("h3");
+        let teddyColor = event.target.parentElement.parentElement.getElementsByTagName("h5");
+        let teddyQuantity = event.target.parentElement.parentElement.getElementsByClassName("quantityofproduct");
+        let actualTeddy = teddies.filter((teddy) => teddy.name == teddyName[0].innerHTML && teddy.color == teddyColor[0].innerHTML);
+        actualTeddy[0].quantity--;
+        for (let i = 0; i < teddyQuantity.length; i++) {
+            teddyQuantity[i].innerHTML = actualTeddy[0].quantity;
         }
+
+        // Modifie le prix de l'ourson
+
+        let priceProductUI = event.target.parentElement.parentElement.parentElement.getElementsByClassName("totalpriceproduct");
+        totalPriceProduct = (actualTeddy[0].price / 100) * actualTeddy[0].quantity;
+        for (let i = 0; i < priceProductUI.length; i++) {
+            priceProductUI[i].innerHTML = totalPriceProduct + `€`;
+        }
+
+        // Modifie le prix total de la commande
+
+        total -= actualTeddy[0].price / 100;
+        document.getElementById("totaldelacommande").innerHTML = "Total de la commande : " + total + "€";
+        localStorage.setItem("Montant Total", total);
+
+        // Renvoie le array dans le local storage
+
+        localStorage.setItem("Teddies", JSON.stringify(teddies));
     });
 
     deleteButton[i].addEventListener("click", (event) => {
         event.preventDefault();
+
+        // Récupère le array dans le local storage
+
         let teddies = [];
         teddies = JSON.parse(localStorage.getItem("Teddies"));
-        total -= (teddies[i].price / 100) * teddies[i].quantity;
-        document.getElementsByClassName("productincart")[i].remove();
-        teddies.splice(i, 1);
-        localStorage.setItem("Teddies", JSON.stringify(teddies));
+
+        // Réduction du montant total de la commande
+
+        let teddyName = event.target.parentElement.parentElement.parentElement.getElementsByTagName("h3");
+        let teddyColor = event.target.parentElement.parentElement.parentElement.getElementsByTagName("h5");
+        let actualTeddy = teddies.filter((teddy) => teddy.name == teddyName[0].innerHTML && teddy.color == teddyColor[0].innerHTML);
+        total -= (actualTeddy[0].price / 100) * actualTeddy[0].quantity;
         document.getElementById("totaldelacommande").innerHTML = "Total de la commande : " + total + "€";
+
+        // Suppression de l'ourson
+
+        event.target.parentElement.parentElement.parentElement.remove();
+        teddies.splice(i, 1);
+
+        // Renvoie le array dans le local storage
+
+        localStorage.setItem("Teddies", JSON.stringify(teddies));
         localStorage.setItem("Montant Total", total);
+
+        // total -= (teddies[i].price / 100) * teddies[i].quantity;
+        // // document.getElementsByClassName("productincart")[i].remove();
+        // teddies.splice(i, 1);
+        // localStorage.setItem("Teddies", JSON.stringify(teddies));
+        // document.getElementById("totaldelacommande").innerHTML = "Total de la commande : " + total + "€";
+        // localStorage.setItem("Montant Total", total);
     });
 }
 
