@@ -144,9 +144,12 @@ function changeQuantity() {
             document.getElementById("totaldelacommande").innerHTML = "Total de la commande : " + total + "€";
 
             // Suppression de l'ourson
-
+            let veryActualTeddy = teddies.find((element) => element.name === teddyName[0].innerHTML && element.color === teddyColor[0].innerHTML);
+            console.log(veryActualTeddy);
+            let index = teddies.indexOf(veryActualTeddy);
+            console.log(index);
             event.target.parentElement.parentElement.parentElement.remove();
-            teddies.splice(i, 1);
+            teddies.splice(index, 1);
 
             // Renvoie le array dans le local storage
 
