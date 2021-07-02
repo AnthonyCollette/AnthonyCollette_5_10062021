@@ -144,10 +144,8 @@ function changeQuantity() {
             document.getElementById("totaldelacommande").innerHTML = "Total de la commande : " + total + "€";
 
             // Suppression de l'ourson
-            let veryActualTeddy = teddies.find((element) => element.name === teddyName[0].innerHTML && element.color === teddyColor[0].innerHTML);
-            console.log(veryActualTeddy);
-            let index = teddies.indexOf(veryActualTeddy);
-            console.log(index);
+            let actualTeddyInStorage = teddies.find((element) => element.name === teddyName[0].innerHTML && element.color === teddyColor[0].innerHTML);
+            let index = teddies.indexOf(actualTeddyInStorage);
             event.target.parentElement.parentElement.parentElement.remove();
             teddies.splice(index, 1);
 
@@ -155,13 +153,6 @@ function changeQuantity() {
 
             localStorage.setItem("Teddies", JSON.stringify(teddies));
             localStorage.setItem("Montant Total", total);
-
-            // total -= (teddies[i].price / 100) * teddies[i].quantity;
-            // // document.getElementsByClassName("productincart")[i].remove();
-            // teddies.splice(i, 1);
-            // localStorage.setItem("Teddies", JSON.stringify(teddies));
-            // document.getElementById("totaldelacommande").innerHTML = "Total de la commande : " + total + "€";
-            // localStorage.setItem("Montant Total", total);
         });
     }
 }
